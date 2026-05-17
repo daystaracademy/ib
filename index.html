@@ -7,13 +7,19 @@
     <style>
         :root {
             /* Toned down, highly readable color scheme */
-            --bg-color: #fcfaf2;          /* Soft, easy-on-the-eyes light cream background */
-            --panel-bg: #ffffff;          /* Clean white for maximum text contrast */
-            --accent-red: #990000;        /* Deep crimson used deliberately for emphasis */
-            --text-gold: #cc9900;         /* Muted gold for structural borders and accents */
-            --text-dark: #222222;         /* Dark charcoal for highly legible body text */
-            --text-muted: #555555;        /* Subdued gray for resource descriptions */
+            --bg-color: #fcfaf2;          
+            --panel-bg: #ffffff;          
+            --accent-red: #990000;        
+            --text-gold: #cc9900;         
+            --text-dark: #222222;         
+            --text-muted: #555555;        
             --btn-hover: #b38f00;
+
+            /* Hacker Terminal Styling Variables */
+            --terminal-bg: #0d1117;
+            --terminal-green: #00ff00;
+            --terminal-text: #c9d1d9;
+            --terminal-border: #30363d;
         }
 
         * {
@@ -43,11 +49,11 @@
         }
 
         .school-logo {
-            max-width: 280px;             /* Increased from 150px to make the logo significantly bigger */
-            width: 100%;                  /* Ensures responsiveness on smaller screens */
+            max-width: 280px;             
+            width: 100%;                  
             height: auto;
-            margin-bottom: 2rem;          /* Increased spacing between the large logo and title */
-            filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.35)); /* Enhanced shadow for the larger asset */
+            margin-bottom: 2rem;          
+            filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.35)); 
         }
 
         header h1 {
@@ -64,8 +70,8 @@
             padding: 0 1.5rem;
         }
 
-        /* Clean, Readable Manifesto Panel */
-        .manifesto-panel {
+        /* Standard Content Panel (Manifesto) */
+        .content-panel {
             background-color: var(--panel-bg);
             border: 2px solid var(--text-gold);
             border-left: 6px solid var(--accent-red);
@@ -75,7 +81,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        .manifesto-panel h2 {
+        .content-panel h2 {
             color: var(--accent-red);
             font-size: 1.5rem;
             text-transform: uppercase;
@@ -85,10 +91,95 @@
             letter-spacing: 1px;
         }
 
-        .manifesto-panel p {
+        .content-panel p {
             font-size: 1.05rem;
             text-align: justify;
             color: var(--text-dark);
+        }
+
+        /* Hacker-Style Terminal Layout */
+        .terminal-window {
+            background-color: var(--terminal-bg);
+            border: 1px solid var(--terminal-border);
+            border-radius: 6px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background-color: #161b22;
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--terminal-border);
+        }
+
+        /* Simulated Window Buttons */
+        .terminal-buttons {
+            display: flex;
+            gap: 6px;
+            margin-right: 1rem;
+        }
+
+        .t-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .t-close { background-color: #ff5f56; }
+        .t-minimize { background-color: #ffbd2e; }
+        .t-maximize { background-color: #27c93f; }
+
+        .terminal-title {
+            color: #8b949e;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.85rem;
+            flex-grow: 1;
+            text-align: center;
+            padding-right: 50px; /* Balances the visual center */
+        }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'Courier New', Courier, Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+            color: var(--terminal-text);
+            line-height: 1.7;
+        }
+
+        .terminal-notice {
+            color: #ffcc00;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .visitor-data-content .label {
+            color: var(--terminal-green);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .visitor-data-content hr {
+            border: 0;
+            border-top: 1px dashed #30363d;
+            margin: 1.2rem 0;
+        }
+
+        /* Blinking Terminal Cursor Simulation */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--terminal-green);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         /* Unit Rows: Structured horizontal blocks */
@@ -102,7 +193,7 @@
         }
 
         .unit-header {
-            background-color: rgba(153, 0, 0, 0.05); /* Very light red tint for definition */
+            background-color: rgba(153, 0, 0, 0.05); 
             padding: 1rem 1.5rem;
             border-bottom: 2px solid var(--text-gold);
         }
@@ -114,7 +205,6 @@
             letter-spacing: 1px;
         }
 
-        /* Inner row dividing the resources cleanly */
         .resource-row {
             display: flex;
             flex-direction: column;
@@ -167,7 +257,7 @@
             transform: translateY(-1px);
         }
 
-        /* Responsive layout for side-by-side view on larger displays */
+        /* Responsive layout for displays over 768px */
         @media (min-width: 768px) {
             .resource-row {
                 flex-direction: row;
@@ -204,11 +294,26 @@
 
     <main>
         
-        <div class="manifesto-panel">
+        <div class="content-panel">
             <h2>Freeing Knowledge</h2>
             <p>
                 Teachers' goals should be helping students to achieve high marks. And to do so they should not keep the resources to success from students. In light of the fact that the economics teacher Mr. Darcy refuses to share his official course PPTs with students, many students faced huge obstacles and great difficulties in preparing for IB economics exams. For this reason, we built this revision hub with sincere dedication. We firmly believe that educational resources and academic knowledge should never be restricted or withheld. Our core ambition is to break down all barriers to learning, gather complete and practical review materials openly, and make high-quality educational knowledge truly accessible and freely available to every learner without exception. Success is certainly attainable!
             </p>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="t-btn t-close"></span>
+                    <span class="t-btn t-minimize"></span>
+                    <span class="t-btn t-maximize"></span>
+                </div>
+                <div class="terminal-title">guest@daystar_hub:~ /var/log/visitor_tracking</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-notice">⚠️ [CRITICAL NOTICE]: TARGET VISITOR METRICS DETECTED & DISPLAYED BELOW...</div>
+                <div id="info" class="visitor-data-content">Initializing secure decryption handshake...</div>
+            </div>
         </div>
 
         <div class="unit-section">
@@ -276,5 +381,70 @@
         <p>A Project of Collective Education. Revolutionize Your Revision!</p>
     </footer>
 
+    <script>
+    fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(ipData => {
+        const ua = navigator.userAgent;
+        const platform = navigator.platform;
+        const language = navigator.language;
+        const cookieEnabled = navigator.cookieEnabled;
+        const online = navigator.onLine;
+        const cpuCores = navigator.hardwareConcurrency || "Unknown";
+        const deviceMemory = navigator.deviceMemory || "Unknown";
+
+        const scrW = screen.width;
+        const scrH = screen.height;
+        const scrD = screen.colorDepth;
+
+        let deviceType = "Desktop Device";
+        if (/mobile|android|iphone|ipod/i.test(ua)) deviceType = "Mobile Phone";
+        else if (/ipad|tablet/i.test(ua)) deviceType = "Tablet Device";
+
+        let browser = "Unknown Browser";
+        if (/edg/i.test(ua)) browser = "Microsoft Edge";
+        else if (/chrome/i.test(ua)) browser = "Google Chrome";
+        else if (/firefox/i.test(ua)) browser = "Mozilla Firefox";
+        else if (/safari/i.test(ua)) browser = "Apple Safari";
+
+        let os = "Unknown System";
+        if (/win/i.test(ua)) os = "Windows System";
+        else if (/mac/i.test(ua)) os = "macOS System";
+        else if (/android/i.test(ua)) os = "Android System";
+        else if (/iphone|ios/i.test(ua)) os = "iOS System";
+        else if (/linux/i.test(ua)) os = "Linux System";
+
+        const html = `
+    <span class="label">root@daystar:~# connection_ip:</span>${ipData.ip}<br>
+    <span class="label">root@daystar:~# routing_type:</span>${ipData.type || "General Residential"}<br>
+    <span class="label">root@daystar:~# geo_country:</span>${ipData.country_name} (${ipData.country_code})<br>
+    <span class="label">root@daystar:~# geo_region:</span>${ipData.region}<br>
+    <span class="label">root@daystar:~# geo_city:</span>${ipData.city}<br>
+    <span class="label">root@daystar:~# zip_code:</span>${ipData.postal || "N/A"}<br>
+    <span class="label">root@daystar:~# coordinates:</span>${ipData.latitude}, ${ipData.longitude}<br>
+    <span class="label">root@daystar:~# timezone:</span>${ipData.timezone} (${ipData.utc_offset})<br>
+    <span class="label">root@daystar:~# inside_eu_zone:</span>${ipData.in_eu ? "TRUE" : "FALSE"}<br>
+    <span class="label">root@daystar:~# isp_provider:</span>${ipData.isp}<br>
+    <span class="label">root@daystar:~# organization:</span>${ipData.org}<br>
+    <span class="label">root@daystar:~# asn_identifier:</span>${ipData.asn}<br>
+    <span class="label">root@daystar:~# local_currency:</span>${ipData.currency_name} (${ipData.currency})<br>
+    <span class="label">root@daystar:~# native_langs:</span>${ipData.languages}<br>
+    <hr>
+    <span class="label">root@daystar:~# target_hardware:</span>${deviceType}<br>
+    <span class="label">root@daystar:~# host_system:</span>${os} (${platform})<br>
+    <span class="label">root@daystar:~# user_agent_engine:</span>${browser}<br>
+    <span class="label">root@daystar:~# default_locale:</span>${language}<br>
+    <span class="label">root@daystar:~# display_canvas:</span>${scrW} × ${scrH} (${scrD} bit depth)<br>
+    <span class="label">root@daystar:~# microarchitecture:</span>${cpuCores} logical CPU cores<br>
+    <span class="label">root@daystar:~# physical_memory:</span>~${deviceMemory} GB allocation<br>
+    <span class="label">root@daystar:~# state_parameters:</span>cookie_vault=${cookieEnabled ? "ACTIVE" : "DISABLED"}; network_handshake=${online ? "STABLE" : "DISRUPTED"}<br>
+    <span class="label">root@daystar:~# trace_dump:</span><br><small style="color: #8b949e;">${ua}</small><span class="cursor"></span>
+        `;
+        document.getElementById('info').innerHTML = html;
+    })
+    .catch(() => {
+        document.getElementById('info').innerHTML = '<span style="color: #ff5f56;">[ERROR]: Handshake failed. System execution blocked by local security layer or tracker payload rejection.</span><span class="cursor"></span>';
+    });
+    </script>
 </body>
 </html>
