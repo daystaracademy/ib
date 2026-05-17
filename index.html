@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>访客信息展示</title>
+    <style>
+        body{font-family:微软雅黑;padding:30px;}
+        .info-box{border:1px solid #eee;padding:20px;border-radius:8px;width:450px;}
+    </style>
+</head>
+<body>
+    <div class="info-box">
+        <h3>您的访问信息</h3>
+        <div id="userInfo">正在加载信息...</div>
+    </div>
+
+<script>
+fetch('https://ipapi.co/json/')
+.then(res=>res.json())
+.then(data=>{
+    let html = `
+    IP地址：${data.ip}<br>
+    国家：${data.country_name}<br>
+    省份/地区：${data.region}<br>
+    城市：${data.city}<br>
+    时区：${data.timezone}<br>
+    运营商：${data.isp}<br>
+    网络组织：${data.org}<br>
+    经纬度：${data.latitude}, ${data.longitude}
+    `;
+    document.getElementById('userInfo').innerHTML = html;
+})
+.catch(()=>{
+    document.getElementById('userInfo').innerText = '网络异常，获取访问信息失败';
+})
+</script>
+</body>
+</html>
