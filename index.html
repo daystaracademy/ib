@@ -2,37 +2,99 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>访客信息展示</title>
+    <title>访客详细信息</title>
     <style>
-        body{font-family:微软雅黑;padding:30px;}
-        .info-box{border:1px solid #eee;padding:20px;border-radius:8px;width:450px;}
+        body { font-family: "Microsoft YaHei", sans-serif; padding: 30px; background: #f7f9fc; }
+        .box { max-width: 600px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h3 { margin-top: 0; color: #222; }
+        .item { line-height: 1.8; color: #333; word-break: break-all; }
+        .label { display: inline-block; width: 140px; color: #666; }
     </style>
 </head>
 <body>
-    <div class="info-box">
-        <h3>您的访问信息</h3>
-        <div id="userInfo">正在加载信息...</div>
-    </div>
+<div class="box">
+    <h3>您的访问信息（完整版）</h3>
+    <div id="info" class="item">正在加载…</div>
+</div>
 
 <script>
+// ---------- 1. IP + 地理位置 + 网络信息 ----------
 fetch('https://ipapi.co/json/')
-.then(res=>res.json())
-.then(data=>{
-    let html = `
-    IP地址：${data.ip}<br>
-    国家：${data.country_name}<br>
-    省份/地区：${data.region}<br>
-    城市：${data.city}<br>
-    时区：${data.timezone}<br>
-    运营商：${data.isp}<br>
-    网络组织：${data.org}<br>
-    经纬度：${data.latitude}, ${data.longitude}
+.then(res => res.json())
+.then(ipData => {
+
+    // ---------- 2. 浏览器/系统/设备信息（navigator） ----------
+    const ua = navigator.userAgent;
+    const platform = navigator.platform;
+    const language = navigator.language;
+    const cookieEnabled = navigator.cookieEnabled;
+    const online = navigator.onLine;
+    const cpuCores = navigator.hardwareConcurrency || '未知';
+    const deviceMemory = navigator.deviceMemory || '未知'; // GB
+
+    // 屏幕
+    const scrW = screen.width;
+    const scrH = screen.height;
+    const scrD = screen.colorDepth;
+
+    // 粗略判断设备类型
+    let deviceType = '桌面端';
+    if (/mobile|android|iphone|ipod/i.test(ua)) deviceType = '手机';
+    else if (/ipad|tablet/i.test(ua)) deviceType = '平板';
+
+    // 粗略浏览器
+    let browser = '未知浏览器';
+    if (/edg/i.test(ua)) browser = 'Edge';
+    else if (/chrome/i.test(ua)) browser = 'Chrome';
+    else if (/firefox/i.test(ua)) browser = 'Firefox';
+    else if (/safari/i.test(ua)) browser = 'Safari';
+
+    // 粗略系统
+    let os = '未知系统';
+    if (/win/i.test(ua)) os = 'Windows';
+    else if (/mac/i.test(ua)) os = 'macOS';
+    else if (/android/i.test(ua)) os = 'Android';
+    else if (/iphone|ios/i.test(ua)) os = 'iOS';
+    else if (/linux/i.test(ua)) os = 'Linux';
+
+    // ---------- 3. 拼接输出 ----------
+    const html = `
+<span class="label">IP 地址：</span>${ipData.ip}<br>
+<span class="label">IP 类型：</span>${ipData.type || '普通IP'}<br>
+<span class="label">国家：</span>${ipData.country_name} (${ipData.country_code})<br>
+<span class="label">地区/省：</span>${ipData.region}<br>
+<span class="label">城市：</span>${ipData.city}<br>
+<span class="label">邮编：</span>${ipData.postal || '无'}<br>
+<span class="label">经纬度：</span>${ipData.latitude}, ${ipData.longitude}<br>
+<span class="label">时区：</span>${ipData.timezone}<br>
+<span class="label">UTC 偏移：</span>${ipData.utc_offset}<br>
+<span class="label">是否欧盟：</span>${ipData.in_eu ? '是' : '否'}<br>
+<span class="label">运营商 ISP：</span>${ipData.isp}<br>
+<span class="label">网络组织：</span>${ipData.org}<br>
+<span class="label">ASN：</span>${ipData.asn}<br>
+<span class="label">货币：</span>${ipData.currency_name} (${ipData.currency})<br>
+<span class="label">语言：</span>${ipData.languages}<br>
+<hr>
+<span class="label">设备类型：</span>${deviceType}<br>
+<span class="label">操作系统：</span>${os} (${platform})<br>
+<span class="label">浏览器：</span>${browser}<br>
+<span class="label">用户语言：</span>${language}<br>
+<span class="label">屏幕分辨率：</span>${scrW} × ${scrH}<br>
+<span class="label">色彩深度：</span>${scrD} bit<br>
+<span class="label">CPU 核心数：</span>${cpuCores}<br>
+<span class="label">设备内存：</span>${deviceMemory} GB<br>
+<span class="label">Cookies 启用：</span>${cookieEnabled ? '是' : '否'}<br>
+<span class="label">网络状态：</span>${online ? '在线' : '离线'}<br>
+<span class="label">User-Agent：</span><br><small>${ua}</small>
     `;
-    document.getElementById('userInfo').innerHTML = html;
+
+    document.getElementById('info').innerHTML = html;
 })
-.catch(()=>{
-    document.getElementById('userInfo').innerText = '网络异常，获取访问信息失败';
-})
+.catch(e => {
+    document.getElementById('info').innerText = '获取信息失败（可能被防火墙/隐私拦截）';
+    console.error(e);
+});
 </script>
+
 </body>
 </html>
