@@ -2,90 +2,164 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Own Visitor Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Economics Review Resources</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 30px; background: #f7f9fc; }
-        .box { max-width: 650px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .tip { color: #d93025; font-weight: bold; margin-bottom: 15px; }
-        .item { line-height: 1.8; color: #333; word-break: break-all; }
-        .label { display: inline-block; width: 160px; color: #555; font-weight: 500; }
-        hr { margin: 18px 0; border: 0; border-top: 1px solid #eee; }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--card-background);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e8;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #e1e4e8;
+        }
     </style>
 </head>
 <body>
-<div class="box">
-    <div class="tip">⚠️ NOTICE: All information below is YOUR OWN visitor data being displayed on this website</div>
-    <h3>Your Complete Visitor Details</h3>
-    <div id="info" class="item">Loading your personal access data...</div>
-</div>
 
-<script>
-fetch('https://ipapi.co/json/')
-.then(res => res.json())
-.then(ipData => {
-    const ua = navigator.userAgent;
-    const platform = navigator.platform;
-    const language = navigator.language;
-    const cookieEnabled = navigator.cookieEnabled;
-    const online = navigator.onLine;
-    const cpuCores = navigator.hardwareConcurrency || "Unknown";
-    const deviceMemory = navigator.deviceMemory || "Unknown";
+    <header>
+        <h1>IB Economics Revision Hub</h1>
+        <p>Download comprehensive PPTs and review materials for your exams.</p>
+    </header>
 
-    const scrW = screen.width;
-    const scrH = screen.height;
-    const scrD = screen.colorDepth;
+    <main>
+        
+        <h2 class="section-title">Unit 2: Microeconomics</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Demand and Supply</h3>
+                <p>Covers market equilibrium, consumer/producer surplus, and allocative efficiency.</p>
+                <a href="ppts/demand_and_supply.pptx" download class="download-btn">Download PPTX</a>
+            </div>
+            <div class="card">
+                <h3>Elasticities</h3>
+                <p>PED, YED, XED, and PES. Formula breakdowns and graph interpretation.</p>
+                <a href="ppts/elasticities.pptx" download class="download-btn">Download PPTX</a>
+            </div>
+        </div>
 
-    let deviceType = "Desktop Device";
-    if (/mobile|android|iphone|ipod/i.test(ua)) deviceType = "Mobile Phone";
-    else if (/ipad|tablet/i.test(ua)) deviceType = "Tablet Device";
+        <h2 class="section-title">Unit 3: Macroeconomics</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Aggregate Demand & Supply</h3>
+                <p>Monetarist/New Classical vs. Keynesian views, and macroeconomic equilibrium.</p>
+                <a href="ppts/adas_model.pptx" download class="download-btn">Download PPTX</a>
+            </div>
+            <div class="card">
+                <h3>Macro Policies</h3>
+                <p>Monetary, Fiscal, and Supply-Side policies to tackle inflation and unemployment.</p>
+                <a href="ppts/macro_policies.pptx" download class="download-btn">Download PPTX</a>
+            </div>
+        </div>
 
-    let browser = "Unknown Browser";
-    if (/edg/i.test(ua)) browser = "Microsoft Edge";
-    else if (/chrome/i.test(ua)) browser = "Google Chrome";
-    else if (/firefox/i.test(ua)) browser = "Mozilla Firefox";
-    else if (/safari/i.test(ua)) browser = "Apple Safari";
+        <h2 class="section-title">Unit 4: The Global Economy</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>International Trade</h3>
+                <p>Free trade benefits, protectionism arguments, tariffs, quotas, and subsidies.</p>
+                <a href="ppts/international_trade.pptx" download class="download-btn">Download PPTX</a>
+            </div>
+        </div>
 
-    let os = "Unknown System";
-    if (/win/i.test(ua)) os = "Windows System";
-    else if (/mac/i.test(ua)) os = "macOS System";
-    else if (/android/i.test(ua)) os = "Android System";
-    else if (/iphone|ios/i.test(ua)) os = "iOS System";
-    else if (/linux/i.test(ua)) os = "Linux System";
+    </main>
 
-    const html = `
-<span class="label">Your Public IP Address:</span>${ipData.ip}<br>
-<span class="label">IP Usage Type:</span>${ipData.type || "General Residential IP"}<br>
-<span class="label">Country:</span>${ipData.country_name} (${ipData.country_code})<br>
-<span class="label">Region / State:</span>${ipData.region}<br>
-<span class="label">City Location:</span>${ipData.city}<br>
-<span class="label">Postal Code:</span>${ipData.postal || "Not Available"}<br>
-<span class="label">Geographic Coordinates:</span>${ipData.latitude}, ${ipData.longitude}<br>
-<span class="label">Local Time Zone:</span>${ipData.timezone}<br>
-<span class="label">UTC Time Offset:</span>${ipData.utc_offset}<br>
-<span class="label">Inside EU Region:</span>${ipData.in_eu ? "Yes" : "No"}<br>
-<span class="label">Network ISP Provider:</span>${ipData.isp}<br>
-<span class="label">Network Organization:</span>${ipData.org}<br>
-<span class="label">Network ASN Code:</span>${ipData.asn}<br>
-<span class="label">Local Currency:</span>${ipData.currency_name} (${ipData.currency})<br>
-<span class="label">Common Local Languages:</span>${ipData.languages}<br>
-<hr>
-<span class="label">Your Device Type:</span>${deviceType}<br>
-<span class="label">Operating System:</span>${os} (${platform})<br>
-<span class="label">Current Browser:</span>${browser}<br>
-<span class="label">System Default Language:</span>${language}<br>
-<span class="label">Screen Resolution:</span>${scrW} × ${scrH}<br>
-<span class="label">Screen Color Depth:</span>${scrD} bit<br>
-<span class="label">CPU Logical Cores:</span>${cpuCores}<br>
-<span class="label">Device RAM Size:</span>${deviceMemory} GB<br>
-<span class="label">Cookies Function Enabled:</span>${cookieEnabled ? "Enabled" : "Disabled"}<br>
-<span class="label">Current Network Status:</span>${online ? "Online Connected" : "Offline Disconnected"}<br>
-<span class="label">Complete User-Agent String:</span><br><small>${ua}</small>
-    `;
-    document.getElementById('info').innerHTML = html;
-})
-.catch(() => {
-    document.getElementById('info').innerText = "Failed to load your personal visitor data, blocked by privacy settings or network rules.";
-});
-</script>
+    <footer>
+        <p>Good luck with your IB Exams! Created for educational review purposes.</p>
+    </footer>
+
 </body>
 </html>
