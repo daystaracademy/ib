@@ -6,11 +6,13 @@
     <title>IB Economics Revision Hub | Knowledge is a Common Resource</title>
     <style>
         :root {
-            --bg-color: #7b0000;          /* Crimson background */
-            --panel-bg: #900000;          /* Lighter red for content panels */
-            --text-gold: #ffd700;         /* Bold gold for headers and accents */
-            --text-cream: #fff8dc;        /* Cream for highly readable body text */
-            --border-gold: #ffd700;
+            /* Toned down, highly readable color scheme */
+            --bg-color: #fcfaf2;          /* Soft, easy-on-the-eyes light cream background */
+            --panel-bg: #ffffff;          /* Clean white for maximum text contrast */
+            --accent-red: #990000;        /* Deep crimson used deliberately for emphasis */
+            --text-gold: #cc9900;         /* Muted gold for structural borders and accents */
+            --text-dark: #222222;         /* Dark charcoal for highly legible body text */
+            --text-muted: #555555;        /* Subdued gray for resource descriptions */
             --btn-hover: #b38f00;
         }
 
@@ -24,25 +26,35 @@
             font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             background-color: var(--bg-color);
-            color: var(--text-cream);
+            color: var(--text-dark);
             padding-bottom: 3rem;
         }
 
-        /* Continuous Header & Banner Setup */
+        /* Continuous Header with Prominent Logo Placement */
         header {
-            background-color: var(--panel-bg);
-            border-bottom: 5px double var(--border-gold);
+            background-color: var(--accent-red);
+            border-bottom: 5px double var(--text-gold);
             text-align: center;
-            padding: 3rem 1.5rem;
-            position: relative;
+            padding: 3.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .school-logo {
+            max-width: 150px;             /* Adjust size to fit your logo's dimensions perfectly */
+            height: auto;
+            margin-bottom: 1.5rem;        /* Spacing between logo and main title */
+            filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.3)); /* Makes logo pop against the red background */
         }
 
         header h1 {
             color: var(--text-gold);
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 1rem;
+            max-width: 800px;
         }
 
         main {
@@ -51,50 +63,52 @@
             padding: 0 1.5rem;
         }
 
-        /* Unified Manifesto Panel */
+        /* Clean, Readable Manifesto Panel */
         .manifesto-panel {
             background-color: var(--panel-bg);
-            border: 3px solid var(--border-gold);
+            border: 2px solid var(--text-gold);
+            border-left: 6px solid var(--accent-red);
             border-radius: 4px;
             padding: 2rem;
             margin-bottom: 3rem;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .manifesto-panel h2 {
-            color: var(--text-gold);
-            font-size: 1.6rem;
+            color: var(--accent-red);
+            font-size: 1.5rem;
             text-transform: uppercase;
             margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--text-gold);
             padding-bottom: 0.5rem;
             letter-spacing: 1px;
         }
 
         .manifesto-panel p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             text-align: justify;
+            color: var(--text-dark);
         }
 
-        /* Unit Rows: Replacing standard grids with unified horizontal blocks */
+        /* Unit Rows: Structured horizontal blocks */
         .unit-section {
             background-color: var(--panel-bg);
-            border: 2px solid var(--border-gold);
+            border: 2px solid var(--text-gold);
             border-radius: 4px;
             margin-bottom: 2.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             overflow: hidden;
         }
 
         .unit-header {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(153, 0, 0, 0.05); /* Very light red tint for definition */
             padding: 1rem 1.5rem;
-            border-bottom: 2px solid var(--border-gold);
+            border-bottom: 2px solid var(--text-gold);
         }
 
         .unit-header h2 {
-            color: var(--text-gold);
-            font-size: 1.5rem;
+            color: var(--accent-red);
+            font-size: 1.4rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -111,50 +125,48 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            border-bottom: 1px solid rgba(204, 153, 0, 0.2);
         }
 
-        /* Remove the bottom border from the last item in a unit row */
         .resource-item:last-child {
             border-bottom: none;
         }
 
         .resource-item h3 {
-            color: var(--text-gold);
+            color: var(--accent-red);
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
         }
 
         .resource-item p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-size: 1rem;
-            opacity: 0.9;
+            color: var(--text-muted);
         }
 
-        /* Styled Download Buttons */
+        /* Download Buttons */
         .download-btn {
             display: inline-block;
-            background-color: var(--text-gold);
-            color: var(--bg-color);
+            background-color: var(--accent-red);
+            color: #ffffff;
             text-align: center;
             padding: 0.6rem 1.5rem;
             text-decoration: none;
             border-radius: 3px;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 0.5px;
             transition: background-color 0.2s ease, transform 0.1s ease;
             border: none;
         }
 
         .download-btn:hover {
-            background-color: var(--btn-hover);
-            color: var(--text-cream);
+            background-color: var(--text-dark);
             transform: translateY(-1px);
         }
 
-        /* Responsive design for larger screens to sit resources side-by-side */
+        /* Responsive layout for side-by-side view on larger displays */
         @media (min-width: 768px) {
             .resource-row {
                 flex-direction: row;
@@ -162,7 +174,7 @@
             .resource-item {
                 flex: 1;
                 border-bottom: none;
-                border-right: 1px solid rgba(255, 215, 0, 0.3);
+                border-right: 1px solid rgba(204, 153, 0, 0.2);
             }
             .resource-item:last-child {
                 border-right: none;
@@ -171,19 +183,21 @@
 
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             margin-top: 4rem;
-            border-top: 2px solid var(--border-gold);
-            color: var(--text-gold);
-            font-size: 1rem;
+            border-top: 2px solid var(--text-gold);
+            color: var(--accent-red);
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
     <header>
+        <img src="daystar-log.png" alt="Daystar Academy Logo" class="school-logo">
         <h1>Making Knowledge attainable for all daystar students</h1>
     </header>
 
