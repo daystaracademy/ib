@@ -1,100 +1,91 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>访客详细信息</title>
+    <title>Your Own Visitor Information</title>
     <style>
-        body { font-family: "Microsoft YaHei", sans-serif; padding: 30px; background: #f7f9fc; }
-        .box { max-width: 600px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        h3 { margin-top: 0; color: #222; }
+        body { font-family: Arial, sans-serif; padding: 30px; background: #f7f9fc; }
+        .box { max-width: 650px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .tip { color: #d93025; font-weight: bold; margin-bottom: 15px; }
         .item { line-height: 1.8; color: #333; word-break: break-all; }
-        .label { display: inline-block; width: 140px; color: #666; }
+        .label { display: inline-block; width: 160px; color: #555; font-weight: 500; }
+        hr { margin: 18px 0; border: 0; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 <div class="box">
-    <h3>您的访问信息（完整版）</h3>
-    <div id="info" class="item">正在加载…</div>
+    <div class="tip">⚠️ NOTICE: All information below is YOUR OWN visitor data being displayed on this website</div>
+    <h3>Your Complete Visitor Details</h3>
+    <div id="info" class="item">Loading your personal access data...</div>
 </div>
 
 <script>
-// ---------- 1. IP + 地理位置 + 网络信息 ----------
 fetch('https://ipapi.co/json/')
 .then(res => res.json())
 .then(ipData => {
-
-    // ---------- 2. 浏览器/系统/设备信息（navigator） ----------
     const ua = navigator.userAgent;
     const platform = navigator.platform;
     const language = navigator.language;
     const cookieEnabled = navigator.cookieEnabled;
     const online = navigator.onLine;
-    const cpuCores = navigator.hardwareConcurrency || '未知';
-    const deviceMemory = navigator.deviceMemory || '未知'; // GB
+    const cpuCores = navigator.hardwareConcurrency || "Unknown";
+    const deviceMemory = navigator.deviceMemory || "Unknown";
 
-    // 屏幕
     const scrW = screen.width;
     const scrH = screen.height;
     const scrD = screen.colorDepth;
 
-    // 粗略判断设备类型
-    let deviceType = '桌面端';
-    if (/mobile|android|iphone|ipod/i.test(ua)) deviceType = '手机';
-    else if (/ipad|tablet/i.test(ua)) deviceType = '平板';
+    let deviceType = "Desktop Device";
+    if (/mobile|android|iphone|ipod/i.test(ua)) deviceType = "Mobile Phone";
+    else if (/ipad|tablet/i.test(ua)) deviceType = "Tablet Device";
 
-    // 粗略浏览器
-    let browser = '未知浏览器';
-    if (/edg/i.test(ua)) browser = 'Edge';
-    else if (/chrome/i.test(ua)) browser = 'Chrome';
-    else if (/firefox/i.test(ua)) browser = 'Firefox';
-    else if (/safari/i.test(ua)) browser = 'Safari';
+    let browser = "Unknown Browser";
+    if (/edg/i.test(ua)) browser = "Microsoft Edge";
+    else if (/chrome/i.test(ua)) browser = "Google Chrome";
+    else if (/firefox/i.test(ua)) browser = "Mozilla Firefox";
+    else if (/safari/i.test(ua)) browser = "Apple Safari";
 
-    // 粗略系统
-    let os = '未知系统';
-    if (/win/i.test(ua)) os = 'Windows';
-    else if (/mac/i.test(ua)) os = 'macOS';
-    else if (/android/i.test(ua)) os = 'Android';
-    else if (/iphone|ios/i.test(ua)) os = 'iOS';
-    else if (/linux/i.test(ua)) os = 'Linux';
+    let os = "Unknown System";
+    if (/win/i.test(ua)) os = "Windows System";
+    else if (/mac/i.test(ua)) os = "macOS System";
+    else if (/android/i.test(ua)) os = "Android System";
+    else if (/iphone|ios/i.test(ua)) os = "iOS System";
+    else if (/linux/i.test(ua)) os = "Linux System";
 
-    // ---------- 3. 拼接输出 ----------
     const html = `
-<span class="label">IP 地址：</span>${ipData.ip}<br>
-<span class="label">IP 类型：</span>${ipData.type || '普通IP'}<br>
-<span class="label">国家：</span>${ipData.country_name} (${ipData.country_code})<br>
-<span class="label">地区/省：</span>${ipData.region}<br>
-<span class="label">城市：</span>${ipData.city}<br>
-<span class="label">邮编：</span>${ipData.postal || '无'}<br>
-<span class="label">经纬度：</span>${ipData.latitude}, ${ipData.longitude}<br>
-<span class="label">时区：</span>${ipData.timezone}<br>
-<span class="label">UTC 偏移：</span>${ipData.utc_offset}<br>
-<span class="label">是否欧盟：</span>${ipData.in_eu ? '是' : '否'}<br>
-<span class="label">运营商 ISP：</span>${ipData.isp}<br>
-<span class="label">网络组织：</span>${ipData.org}<br>
-<span class="label">ASN：</span>${ipData.asn}<br>
-<span class="label">货币：</span>${ipData.currency_name} (${ipData.currency})<br>
-<span class="label">语言：</span>${ipData.languages}<br>
+<span class="label">Your Public IP Address:</span>${ipData.ip}<br>
+<span class="label">IP Usage Type:</span>${ipData.type || "General Residential IP"}<br>
+<span class="label">Country:</span>${ipData.country_name} (${ipData.country_code})<br>
+<span class="label">Region / State:</span>${ipData.region}<br>
+<span class="label">City Location:</span>${ipData.city}<br>
+<span class="label">Postal Code:</span>${ipData.postal || "Not Available"}<br>
+<span class="label">Geographic Coordinates:</span>${ipData.latitude}, ${ipData.longitude}<br>
+<span class="label">Local Time Zone:</span>${ipData.timezone}<br>
+<span class="label">UTC Time Offset:</span>${ipData.utc_offset}<br>
+<span class="label">Inside EU Region:</span>${ipData.in_eu ? "Yes" : "No"}<br>
+<span class="label">Network ISP Provider:</span>${ipData.isp}<br>
+<span class="label">Network Organization:</span>${ipData.org}<br>
+<span class="label">Network ASN Code:</span>${ipData.asn}<br>
+<span class="label">Local Currency:</span>${ipData.currency_name} (${ipData.currency})<br>
+<span class="label">Common Local Languages:</span>${ipData.languages}<br>
 <hr>
-<span class="label">设备类型：</span>${deviceType}<br>
-<span class="label">操作系统：</span>${os} (${platform})<br>
-<span class="label">浏览器：</span>${browser}<br>
-<span class="label">用户语言：</span>${language}<br>
-<span class="label">屏幕分辨率：</span>${scrW} × ${scrH}<br>
-<span class="label">色彩深度：</span>${scrD} bit<br>
-<span class="label">CPU 核心数：</span>${cpuCores}<br>
-<span class="label">设备内存：</span>${deviceMemory} GB<br>
-<span class="label">Cookies 启用：</span>${cookieEnabled ? '是' : '否'}<br>
-<span class="label">网络状态：</span>${online ? '在线' : '离线'}<br>
-<span class="label">User-Agent：</span><br><small>${ua}</small>
+<span class="label">Your Device Type:</span>${deviceType}<br>
+<span class="label">Operating System:</span>${os} (${platform})<br>
+<span class="label">Current Browser:</span>${browser}<br>
+<span class="label">System Default Language:</span>${language}<br>
+<span class="label">Screen Resolution:</span>${scrW} × ${scrH}<br>
+<span class="label">Screen Color Depth:</span>${scrD} bit<br>
+<span class="label">CPU Logical Cores:</span>${cpuCores}<br>
+<span class="label">Device RAM Size:</span>${deviceMemory} GB<br>
+<span class="label">Cookies Function Enabled:</span>${cookieEnabled ? "Enabled" : "Disabled"}<br>
+<span class="label">Current Network Status:</span>${online ? "Online Connected" : "Offline Disconnected"}<br>
+<span class="label">Complete User-Agent String:</span><br><small>${ua}</small>
     `;
-
     document.getElementById('info').innerHTML = html;
 })
-.catch(e => {
-    document.getElementById('info').innerText = '获取信息失败（可能被防火墙/隐私拦截）';
-    console.error(e);
+.catch(() => {
+    document.getElementById('info').innerText = "Failed to load your personal visitor data, blocked by privacy settings or network rules.";
 });
 </script>
-
 </body>
 </html>
