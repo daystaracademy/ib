@@ -3,162 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IB Economics Review Resources</title>
+    <title>IB Economics Revision Hub | Knowledge is a Common Resource</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --background-color: #f8f9fa;
-            --card-background: #ffffff;
-            --text-color: #333333;
+            --bg-color: #7b0000;          /* Crimson background */
+            --panel-bg: #900000;          /* Lighter red for content panels */
+            --text-gold: #ffd700;         /* Bold gold for headers and accents */
+            --text-cream: #fff8dc;        /* Cream for highly readable body text */
+            --border-gold: #ffd700;
+            --btn-hover: #b38f00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-cream);
+            padding-bottom: 3rem;
         }
 
+        /* Continuous Header & Banner Setup */
         header {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: var(--panel-bg);
+            border-bottom: 5px double var(--border-gold);
             text-align: center;
-            padding: 2.5rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 3rem 1.5rem;
+            position: relative;
         }
 
         header h1 {
-            margin: 0;
+            color: var(--text-gold);
             font-size: 2.5rem;
-        }
-
-        header p {
-            margin: 0.5rem 0 0 0;
-            font-size: 1.1rem;
-            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
 
         main {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
         }
 
-        .section-title {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
+        /* Unified Manifesto Panel */
+        .manifesto-panel {
+            background-color: var(--panel-bg);
+            border: 3px solid var(--border-gold);
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .manifesto-panel h2 {
+            color: var(--text-gold);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-gold);
             padding-bottom: 0.5rem;
-            margin-top: 2rem;
+            letter-spacing: 1px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
+        .manifesto-panel p {
+            font-size: 1.1rem;
+            text-align: justify;
         }
 
-        .card {
-            background: var(--card-background);
-            border-radius: 8px;
+        /* Unit Rows: Replacing standard grids with unified horizontal blocks */
+        .unit-section {
+            background-color: var(--panel-bg);
+            border: 2px solid var(--border-gold);
+            border-radius: 4px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .unit-header {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid var(--border-gold);
+        }
+
+        .unit-header h2 {
+            color: var(--text-gold);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Inner row dividing the resources cleanly */
+        .resource-row {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-item {
             padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border: 1px solid #e1e4e8;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
         }
 
-        .card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
+        /* Remove the bottom border from the last item in a unit row */
+        .resource-item:last-child {
+            border-bottom: none;
         }
 
-        .card p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+        .resource-item h3 {
+            color: var(--text-gold);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
         }
 
+        .resource-item p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Styled Download Buttons */
         .download-btn {
             display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
+            background-color: var(--text-gold);
+            color: var(--bg-color);
             text-align: center;
-            padding: 0.7rem 1rem;
+            padding: 0.6rem 1.5rem;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 3px;
             font-weight: bold;
-            transition: background-color 0.2s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            border: none;
         }
 
         .download-btn:hover {
-            background-color: #2980b9;
+            background-color: var(--btn-hover);
+            color: var(--text-cream);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive design for larger screens to sit resources side-by-side */
+        @media (min-width: 768px) {
+            .resource-row {
+                flex-direction: row;
+            }
+            .resource-item {
+                flex: 1;
+                border-bottom: none;
+                border-right: 1px solid rgba(255, 215, 0, 0.3);
+            }
+            .resource-item:last-child {
+                border-right: none;
+            }
         }
 
         footer {
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
-            font-size: 0.9rem;
-            color: #777;
-            border-top: 1px solid #e1e4e8;
+            border-top: 2px solid var(--border-gold);
+            color: var(--text-gold);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>IB Economics Revision Hub</h1>
-        <p>Download comprehensive PPTs and review materials for your exams.</p>
+        <h1>Making Knowledge attainable for all daystar students</h1>
     </header>
 
     <main>
         
-        <h2 class="section-title">Unit 2: Microeconomics</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Demand and Supply</h3>
-                <p>Covers market equilibrium, consumer/producer surplus, and allocative efficiency.</p>
-                <a href="ppts/demand_and_supply.pptx" download class="download-btn">Download PPTX</a>
+        <div class="manifesto-panel">
+            <h2>Freeing Knowledge</h2>
+            <p>
+                Teachers' goals should be helping students to achieve high marks. And to do so they should not keep the resources to success from students. In light of the fact that the economics teacher Mr. Darcy refuses to share his official course PPTs with students, many students faced huge obstacles and great difficulties in preparing for IB economics exams. For this reason, we built this revision hub with sincere dedication. We firmly believe that educational resources and academic knowledge should never be restricted or withheld. Our core ambition is to break down all barriers to learning, gather complete and practical review materials openly, and make high-quality educational knowledge truly accessible and freely available to every learner without exception. Success is certainly attainable!
+            </p>
+        </div>
+
+        <div class="unit-section">
+            <div class="unit-header">
+                <h2>Unit 2: Microeconomics</h2>
             </div>
-            <div class="card">
-                <h3>Elasticities</h3>
-                <p>PED, YED, XED, and PES. Formula breakdowns and graph interpretation.</p>
-                <a href="ppts/elasticities.pptx" download class="download-btn">Download PPTX</a>
+            <div class="resource-row">
+                <div class="resource-item">
+                    <div>
+                        <h3>Demand and Supply</h3>
+                        <p>Covers market equilibrium, consumer/producer surplus, and allocative efficiency.</p>
+                    </div>
+                    <a href="ppts/demand_and_supply.pptx" download class="download-btn">Download PPTX</a>
+                </div>
+                <div class="resource-item">
+                    <div>
+                        <h3>Elasticities</h3>
+                        <p>PED, YED, XED, and PES. Formula breakdowns and graph interpretation.</p>
+                    </div>
+                    <a href="ppts/elasticities.pptx" download class="download-btn">Download PPTX</a>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title">Unit 3: Macroeconomics</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Aggregate Demand & Supply</h3>
-                <p>Monetarist/New Classical vs. Keynesian views, and macroeconomic equilibrium.</p>
-                <a href="ppts/adas_model.pptx" download class="download-btn">Download PPTX</a>
+        <div class="unit-section">
+            <div class="unit-header">
+                <h2>Unit 3: Macroeconomics</h2>
             </div>
-            <div class="card">
-                <h3>Macro Policies</h3>
-                <p>Monetary, Fiscal, and Supply-Side policies to tackle inflation and unemployment.</p>
-                <a href="ppts/macro_policies.pptx" download class="download-btn">Download PPTX</a>
+            <div class="resource-row">
+                <div class="resource-item">
+                    <div>
+                        <h3>Aggregate Demand & Supply</h3>
+                        <p>Monetarist/New Classical vs. Keynesian views, and macroeconomic equilibrium.</p>
+                    </div>
+                    <a href="ppts/adas_model.pptx" download class="download-btn">Download PPTX</a>
+                </div>
+                <div class="resource-item">
+                    <div>
+                        <h3>Macro Policies</h3>
+                        <p>Monetary, Fiscal, and Supply-Side policies to tackle inflation and unemployment.</p>
+                    </div>
+                    <a href="ppts/macro_policies.pptx" download class="download-btn">Download PPTX</a>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title">Unit 4: The Global Economy</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>International Trade</h3>
-                <p>Free trade benefits, protectionism arguments, tariffs, quotas, and subsidies.</p>
-                <a href="ppts/international_trade.pptx" download class="download-btn">Download PPTX</a>
+        <div class="unit-section">
+            <div class="unit-header">
+                <h2>Unit 4: The Global Economy</h2>
+            </div>
+            <div class="resource-row">
+                <div class="resource-item">
+                    <div>
+                        <h3>International Trade</h3>
+                        <p>Free trade benefits, protectionism arguments, tariffs, quotas, and subsidies.</p>
+                    </div>
+                    <a href="ppts/international_trade.pptx" download class="download-btn">Download PPTX</a>
+                </div>
             </div>
         </div>
 
     </main>
 
     <footer>
-        <p>Good luck with your IB Exams! Created for educational review purposes.</p>
+        <p>A Project of Collective Education. Revolutionize Your Revision!</p>
     </footer>
 
 </body>
